@@ -130,17 +130,27 @@
     }
 	
 	function myFunction(){
-	var mPulpa = new Number($("#mPulpa").val());
+	var capacidadTanque = new Number($("#capacidadTanque").val());
+	var numeroTanque = new Number($("#numeroTanque").val());
+	var mPulpa = capacidadTanque*numeroTanque;
 	var xPulpa = new Number($("#xPulpa").val());
 	var xPulpaConcentrada = new Number($("#xPulpaConcentrada").val());
 	var mPulpaConcentrada = (mPulpa*xPulpa)/xPulpaConcentrada;
 	var mAguaEvaporada = mPulpa - mPulpaConcentrada;
 	var mVaporDeAgua = ((mPulpaConcentrada*3.5*50)+(mAguaEvaporada*2450)-(mPulpa*3.75*60))/(2537.4-345);
-	var mAguaTorre = ((182.38-2450)/(118.8-182.38))*mAguaEvaporada;
-	$("#mPulpaConcentrada").val(mPulpaConcentrada);
-	$("#mAguaEvaporada").val(mAguaEvaporada);
-	$("#mVaporDeAgua").val(mVaporDeAgua);
-	$("#mAguaTorre").val(mAguaTorre);
+	var mAguaTorre = (((182.38-2450)/(118.8-182.38))*mAguaEvaporada)/1000;
+	$("#mPulpa").val(mPulpa.toFixed(2));
+	$("#mPulpaConcentrada").val(mPulpaConcentrada.toFixed(3));
+	$("#mAguaEvaporada").val(mAguaEvaporada.toFixed(3));
+	$("#mVaporDeAgua").val(mVaporDeAgua.toFixed(3));
+	$("#mAguaTorre").val(mAguaTorre.toFixed(3));
+	}
+	
+	function myCleaningFunction(){
+	$("#capacidadTanque").val("");
+	$("#numeroTanque").val("");
+	$("#xPulpa").val("");
+	$("#xPulpaConcentrada").val("");
 	}
   </script>
 
@@ -157,14 +167,14 @@
     <textarea id="mySavedModel" style="width:100%;height:300px" >
 { "class": "go.GraphLinksModel",
   "nodeDataArray": [
-{"key":"P0", "category":"Process", "pos":"-25 120", "text":"Producto"},
-{"key":"P1", "category":"Process", "pos":"150 120", "text":"Evaporador 1er Efecto"},
+{"key":"P0", "category":"Process", "pos":"-25 120", "text":"Pulpa \n 60°C"},
+{"key":"P1", "category":"Process", "pos":"140 120", "text":"Evaporador 1er Efecto \n 0.3 bar"},
 {"key":"P5", "category":"Process", "pos":"330 50", "text":"Intercambiador"},
 {"key":"P2", "category":"Process", "pos":"330 280", "text":"Condensador Cascada"},
-{"key":"P7", "category":"Process", "pos":"330 360", "text":"Torre Enfriamiento Temperatura 1"},
+{"key":"P7", "category":"Process", "pos":"330 360", "text":"Torre Enfriamiento Temperatura 1 \n T1 = 40 - 30°C"},
 {"key":"P6", "category":"Process", "pos":"330 200", "text":"Agua Torre"},
-{"key":"V1", "category":"Valve", "pos":"330 120", "text":"Concentrado 1 Presión de Vacío 1"},
-{"key":"V2", "category":"Valve", "pos":"215 280", "text":"Vapor Vegetal"},
+{"key":"V1", "category":"Valve", "pos":"330 120", "text":"Concentrado 1 Presión de Vacío 1 50°C"},
+{"key":"V2", "category":"Valve", "pos":"215 280", "text":"Vapor Vegetal \n 76°C"},
 {"key":"P4", "category":"Process", "pos":"500 120", "text":"Tanque"},
 {"key":"V5", "category":"Process", "pos":"500 260", "text":"Producto Final"}
  ],
@@ -186,57 +196,69 @@
     <div class="container">
       <div class="row bg_3">
         <h2><i>Balanceo</i></h2>
-        <div class="col-3 input-effect">
-        	<input class="effect-16" id="mPulpa" type="number" step='.01' placeholder="">
-            <label>M Pulpa</label>
+		<div class="col-3 input-effect">
+        	<input class="effect-16" id="numeroTanque" type="number" step='.01' placeholder="">
+            <label>Número de tanques</label>
             <span class="focus-border"></span>
+			<img src="https://img.icons8.com/ultraviolet/40/000000/hashtag.png">
         </div>
         <div class="col-3 input-effect">
-        	<input class="effect-17" id="xPulpa" type="number" step='.01' placeholder="">
-            <label>X Pulpa</label>
+        	<input class="effect-17" id="capacidadTanque" type="number" step='.01' placeholder="">
+            <label>Capacidad de tanque</label>
             <span class="focus-border"></span>
-        </div>
-        <div class="col-3 input-effect">
-        	<input class="effect-18" id="xPulpaConcentrada" type="number" step='.01' placeholder="">
-            <label>X Pulpa Concentrada</label>
-            <span class="focus-border"></span>
+			<img src="https://img.icons8.com/ultraviolet/40/000000/weight-kg.png">
         </div>
 		<div class="col-3 input-effect">
         	<button onclick="myFunction()">Enviar Datos</button>
         </div>
         <div class="col-3 input-effect">
-			<label>M Pulpa Concentrada</label>
-        	<input class="effect-19" id="mPulpaConcentrada" type="number" step='.01' placeholder="" disabled>
-            <span class="focus-border">
-            	<i></i>
-            </span>
+        	<input class="effect-17" id="xPulpa" type="number" step='.01' placeholder="">
+            <label>°Brix Pulpa</label>
+            <span class="focus-border"></span>
+			<img src="https://img.icons8.com/ultraviolet/40/000000/weight-kg.png">
         </div>
         <div class="col-3 input-effect">
-		<label>M Agua Evaporada</label>
-        	<input class="effect-20" id="mAguaEvaporada" type="number" step='.01' placeholder="" disabled>
-            
-            <span class="focus-border">
-            	<i></i>
-            </span>
-        </div>
-        <div class="col-3 input-effect">
-		<label>M Vapor De Agua</label>
-        	<input class="effect-21" id="mVaporDeAgua" type="number" step='.01' placeholder="" disabled>
-            
-            <span class="focus-border">
-            	<i></i>
-            </span>
+        	<input class="effect-18" id="xPulpaConcentrada" type="number" step='.01' placeholder="">
+            <label>°Brix Pulpa Concentrada</label>
+            <span class="focus-border"></span>
+			<img src="https://img.icons8.com/ultraviolet/40/000000/weight-kg.png">
         </div>
 		<div class="col-3 input-effect">
-		<label>M Agua Torre</label>
-        	<input class="effect-19" id="mAguaTorre" type="number" step='.01' placeholder="" disabled>
-            
-            <span class="focus-border">
-            	<i></i>
-            </span>
+        	<button onclick="myCleaningFunction()">Limpiar Datos</button>
         </div>
       </div>
     </div>
+	<div class="mahi_holder">
+	<div class="container">
+      <div class="row bg_3">
+	  <div class="col-3 input-effect">
+			<label>Masa Pulpa</label>
+        	<input class="effect-19" id="mPulpa" type="number" step='.01' placeholder="" disabled>
+            <img src="https://img.icons8.com/ultraviolet/40/000000/weight-kg.png">
+        </div>
+        <div class="col-3 input-effect">
+			<label>Masa Pulpa Concentrada</label>
+        	<input class="effect-19" id="mPulpaConcentrada" type="number" step='.01' placeholder="" disabled>
+			<img src="https://img.icons8.com/ultraviolet/40/000000/weight-kg.png">
+        </div>
+        <div class="col-3 input-effect">
+		<label>Masa Agua Evaporada</label>
+        	<input class="effect-20" id="mAguaEvaporada" type="number" step='.01' placeholder="" disabled>
+            <img src="https://img.icons8.com/ultraviolet/40/000000/weight-kg.png">
+        </div>
+        <div class="col-3 input-effect">
+		<label>Masa Vapor De Agua</label>
+        	<input class="effect-21" id="mVaporDeAgua" type="number" step='.01' placeholder="" disabled>
+            <img src="https://img.icons8.com/ultraviolet/40/000000/weight-kg.png">
+        </div>
+		<div class="col-3 input-effect">
+		<label>Masa Agua Torre</label>
+        	<input class="effect-19" id="mAguaTorre" type="number" step='.01' placeholder="" disabled>           
+            <span>&#13221;</span>
+        </div>
+	  </div>
+    </div>
+</div>
 </div>
 
 </div>
