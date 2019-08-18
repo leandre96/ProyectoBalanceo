@@ -130,7 +130,6 @@
     }
 	
 	function myFunction(){
-	$("#holder_2").attr("hidden",false);
 	var capacidadTanque = new Number($("#capacidadTanque").val());
 	var numeroTanque = new Number($("#numeroTanque").val());
 	var mPulpa = capacidadTanque*numeroTanque;
@@ -152,7 +151,6 @@
 	$("#numeroTanque").val("");
 	$("#xPulpa").val("");
 	$("#xPulpaConcentrada").val("");
-	$("#holder_2").attr("hidden",true);
 	}
   </script>
 
@@ -200,7 +198,7 @@
     <div class="container">
       <div class="row bg_3">
         <h2><i>Balanceo</i></h2>
-		<h3><i>Datos</i></h3>
+		<h3 align="center"><i>Datos</i></h3>
 		<hr>
 		<div class="col-3 input-effect">
         	<input class="effect-16" id="numeroTanque" type="number" step='.01' placeholder="">
@@ -231,10 +229,10 @@
         </div>
       </div>
     </div>
-	<div id="holder_2" class="mahi_holder" hidden>
+	<div id="holder_2" class="mahi_holder" >
 	<div class="container">
       <div class="row bg_3">
-	  <h3><i>Resultados</i></h3>
+	  <h3 align="center"><i>Resultados</i></h3>
 	  <hr>
 	  <div class="col-3 input-effect">
 			<label>Masa Pulpa</label>
