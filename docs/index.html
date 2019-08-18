@@ -173,7 +173,8 @@
 {"key":"P2", "category":"Process", "pos":"330 280", "text":"Condensador Cascada"},
 {"key":"P7", "category":"Process", "pos":"330 360", "text":"Torre Enfriamiento Temperatura 1 \n T1 = 40 - 30°C"},
 {"key":"P6", "category":"Process", "pos":"330 200", "text":"Agua Torre"},
-{"key":"V1", "category":"Valve", "pos":"330 120", "text":"Concentrado 1 Presión de Vacío 1 50°C"},
+{"key":"V1", "category":"Valve", "pos":"315 120", "text":""},
+{"key":"V6", "category":"Valve", "pos":"400 120", "text":"50°C"},
 {"key":"V2", "category":"Valve", "pos":"215 280", "text":"Vapor Vegetal \n 76°C"},
 {"key":"P4", "category":"Process", "pos":"500 120", "text":"Tanque"},
 {"key":"V5", "category":"Process", "pos":"500 260", "text":"Producto Final"}
@@ -185,7 +186,8 @@
 {"from":"V2", "to":"P2"},
 {"from":"P1", "to":"V2"},
 {"from":"P2", "to":"P7"},
-{"from":"V1", "to":"P4"},
+{"from":"V1", "to":"V6"},
+{"from":"V6", "to":"P4"},
 {"from":"V1", "to":"P5"},
 {"from":"P6", "to":"P2"},
 {"from":"P4", "to":"V5"}
@@ -200,13 +202,12 @@
         	<input class="effect-16" id="numeroTanque" type="number" step='.01' placeholder="">
             <label>Número de tanques</label>
             <span class="focus-border"></span>
-			<img src="https://img.icons8.com/ultraviolet/40/000000/hashtag.png">
         </div>
         <div class="col-3 input-effect">
         	<input class="effect-17" id="capacidadTanque" type="number" step='.01' placeholder="">
             <label>Capacidad de tanque</label>
             <span class="focus-border"></span>
-			<img src="https://img.icons8.com/ultraviolet/40/000000/weight-kg.png">
+			<span>&#13199;</span>
         </div>
 		<div class="col-3 input-effect">
         	<button onclick="myFunction()">Enviar Datos</button>
@@ -215,13 +216,11 @@
         	<input class="effect-17" id="xPulpa" type="number" step='.01' placeholder="">
             <label>°Brix Pulpa</label>
             <span class="focus-border"></span>
-			<img src="https://img.icons8.com/ultraviolet/40/000000/weight-kg.png">
         </div>
         <div class="col-3 input-effect">
         	<input class="effect-18" id="xPulpaConcentrada" type="number" step='.01' placeholder="">
             <label>°Brix Pulpa Concentrada</label>
             <span class="focus-border"></span>
-			<img src="https://img.icons8.com/ultraviolet/40/000000/weight-kg.png">
         </div>
 		<div class="col-3 input-effect">
         	<button onclick="myCleaningFunction()">Limpiar Datos</button>
@@ -234,22 +233,22 @@
 	  <div class="col-3 input-effect">
 			<label>Masa Pulpa</label>
         	<input class="effect-19" id="mPulpa" type="number" step='.01' placeholder="" disabled>
-            <img src="https://img.icons8.com/ultraviolet/40/000000/weight-kg.png">
+            <span>&#13199;</span>
         </div>
         <div class="col-3 input-effect">
 			<label>Masa Pulpa Concentrada</label>
         	<input class="effect-19" id="mPulpaConcentrada" type="number" step='.01' placeholder="" disabled>
-			<img src="https://img.icons8.com/ultraviolet/40/000000/weight-kg.png">
+			<span>&#13199;</span>
         </div>
         <div class="col-3 input-effect">
 		<label>Masa Agua Evaporada</label>
         	<input class="effect-20" id="mAguaEvaporada" type="number" step='.01' placeholder="" disabled>
-            <img src="https://img.icons8.com/ultraviolet/40/000000/weight-kg.png">
+            <span>&#13199;</span>
         </div>
         <div class="col-3 input-effect">
 		<label>Masa Vapor De Agua</label>
         	<input class="effect-21" id="mVaporDeAgua" type="number" step='.01' placeholder="" disabled>
-            <img src="https://img.icons8.com/ultraviolet/40/000000/weight-kg.png">
+            <span>&#13199;</span>
         </div>
 		<div class="col-3 input-effect">
 		<label>Masa Agua Torre</label>
