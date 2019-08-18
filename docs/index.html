@@ -5,8 +5,9 @@
   <title>Process Flow</title>
   <meta name="description" content="A simple process flow or SCADA diagram editor, simulating equipment monitoring and control." />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
   <!-- Copyright 1998-2019 by Northwoods Software Corporation. -->
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="go.js"></script>
   <script src="Figures.js"></script>
   <script src="goSamples.js"></script>  <!-- this is only for the GoJS Samples framework -->
@@ -127,57 +128,117 @@
     function load() {
       myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
     }
+	
+	function myFunction(){
+	var mPulpa = new Number($("#mPulpa").val());
+	var xPulpa = new Number($("#xPulpa").val());
+	var xPulpaConcentrada = new Number($("#xPulpaConcentrada").val());
+	var mPulpaConcentrada = (mPulpa*xPulpa)/xPulpaConcentrada;
+	var mAguaEvaporada = mPulpa - mPulpaConcentrada;
+	var mVaporDeAgua = ((mPulpaConcentrada*3.5*50)+(mAguaEvaporada*2450)-(mPulpa*3.75*60))/(2537.4-345);
+	var mAguaTorre = ((182.38-2450)/(118.8-182.38))*mAguaEvaporada;
+	$("#mPulpaConcentrada").val(mPulpaConcentrada);
+	$("#mAguaEvaporada").val(mAguaEvaporada);
+	$("#mVaporDeAgua").val(mVaporDeAgua);
+	$("#mAguaTorre").val(mAguaTorre);
+	}
   </script>
 
 </head>
 <body onload="init()">
 <div id="sample">
   <div id="myDiagramDiv" style="border: solid 1px black; width:100%; height:500px"></div>
-  <p>
-    A <em>process flow diagram</em> is commonly used in chemical and process engineering to indicate the general flow of plant processes and equipment.
-    A simple SCADA diagram, with animation of the flow along the pipes, is implemented here.
-  </p>
-  <p>
-    The diagram displays the background grid layer by setting <b>grid.visible</b> to true,
-    and also allows snapping to the grid using <a>DraggingTool.isGridSnapEnabled</a>,
-    <a>ResizingTool.isGridSnapEnabled</a>, and <a>RotatingTool.snapAngleMultiple</a> alongside <a>RotatingTool.snapAngleEpsilon</a>.
-  </p>
-  <p>
-    The diagram also uses the <b>loop</b> function to animate the links by adjusting the <a>Shape.strokeDashOffset</a> every 100 ms.
-  </p>
-  <div>
+  <div hidden>
     <div>
       <button id="SaveButton" onclick="save()">Save</button>
       <button onclick="load()">Load</button>
       Diagram Model saved in JSON format:
     </div>
-    <textarea id="mySavedModel" style="width:100%;height:300px">
+    <textarea id="mySavedModel" style="width:100%;height:300px" >
 { "class": "go.GraphLinksModel",
   "nodeDataArray": [
-{"key":"P1", "category":"Process", "pos":"150 120", "text":"Process"},
-{"key":"P2", "category":"Process", "pos":"330 320", "text":"Tank"},
-{"key":"V1", "category":"Valve", "pos":"270 120", "text":"V1"},
-{"key":"P3", "category":"Process", "pos":"150 420", "text":"Pump"},
-{"key":"V2", "category":"Valve", "pos":"150 280", "text":"VM", "angle":270},
-{"key":"V3", "category":"Valve", "pos":"270 420", "text":"V2", "angle":180},
-{"key":"P4", "category":"Process", "pos":"450 140", "text":"Reserve Tank"},
-{"key":"V4", "category":"Valve", "pos":"390 60", "text":"VA"},
-{"key":"V5", "category":"Valve", "pos":"450 260", "text":"VB", "angle":90}
+{"key":"P0", "category":"Process", "pos":"-25 120", "text":"Producto"},
+{"key":"P1", "category":"Process", "pos":"150 120", "text":"Evaporador 1er Efecto"},
+{"key":"P5", "category":"Process", "pos":"330 50", "text":"Intercambiador"},
+{"key":"P2", "category":"Process", "pos":"330 280", "text":"Condensador Cascada"},
+{"key":"P7", "category":"Process", "pos":"330 360", "text":"Torre Enfriamiento Temperatura 1"},
+{"key":"P6", "category":"Process", "pos":"330 200", "text":"Agua Torre"},
+{"key":"V1", "category":"Valve", "pos":"330 120", "text":"Concentrado 1 Presión de Vacío 1"},
+{"key":"V2", "category":"Valve", "pos":"215 280", "text":"Vapor Vegetal"},
+{"key":"P4", "category":"Process", "pos":"500 120", "text":"Tanque"},
+{"key":"V5", "category":"Process", "pos":"500 260", "text":"Producto Final"}
  ],
   "linkDataArray": [
+{"from":"P0", "to":"P1"},
+{"from":"P5", "to":"P1"},
 {"from":"P1", "to":"V1"},
-{"from":"P3", "to":"V2"},
-{"from":"V2", "to":"P1"},
-{"from":"P2", "to":"V3"},
-{"from":"V3", "to":"P3"},
-{"from":"V1", "to":"V4"},
-{"from":"V4", "to":"P4"},
-{"from":"V1", "to":"P2"},
-{"from":"P4", "to":"V5"},
-{"from":"V5", "to":"P2"}
+{"from":"V2", "to":"P2"},
+{"from":"P1", "to":"V2"},
+{"from":"P2", "to":"P7"},
+{"from":"V1", "to":"P4"},
+{"from":"V1", "to":"P5"},
+{"from":"P6", "to":"P2"},
+{"from":"P4", "to":"V5"}
  ]}
     </textarea>
   </div>
+  <div class="mahi_holder">
+    <div class="container">
+      <div class="row bg_3">
+        <h2><i>Balanceo</i></h2>
+        <div class="col-3 input-effect">
+        	<input class="effect-16" id="mPulpa" type="number" step='.01' placeholder="">
+            <label>M Pulpa</label>
+            <span class="focus-border"></span>
+        </div>
+        <div class="col-3 input-effect">
+        	<input class="effect-17" id="xPulpa" type="number" step='.01' placeholder="">
+            <label>X Pulpa</label>
+            <span class="focus-border"></span>
+        </div>
+        <div class="col-3 input-effect">
+        	<input class="effect-18" id="xPulpaConcentrada" type="number" step='.01' placeholder="">
+            <label>X Pulpa Concentrada</label>
+            <span class="focus-border"></span>
+        </div>
+		<div class="col-3 input-effect">
+        	<button onclick="myFunction()">Enviar Datos</button>
+        </div>
+        <div class="col-3 input-effect">
+			<label>M Pulpa Concentrada</label>
+        	<input class="effect-19" id="mPulpaConcentrada" type="number" step='.01' placeholder="" disabled>
+            <span class="focus-border">
+            	<i></i>
+            </span>
+        </div>
+        <div class="col-3 input-effect">
+		<label>M Agua Evaporada</label>
+        	<input class="effect-20" id="mAguaEvaporada" type="number" step='.01' placeholder="" disabled>
+            
+            <span class="focus-border">
+            	<i></i>
+            </span>
+        </div>
+        <div class="col-3 input-effect">
+		<label>M Vapor De Agua</label>
+        	<input class="effect-21" id="mVaporDeAgua" type="number" step='.01' placeholder="" disabled>
+            
+            <span class="focus-border">
+            	<i></i>
+            </span>
+        </div>
+		<div class="col-3 input-effect">
+		<label>M Agua Torre</label>
+        	<input class="effect-19" id="mAguaTorre" type="number" step='.01' placeholder="" disabled>
+            
+            <span class="focus-border">
+            	<i></i>
+            </span>
+        </div>
+      </div>
+    </div>
+</div>
+
 </div>
 </body>
 </html>
