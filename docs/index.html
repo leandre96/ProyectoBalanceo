@@ -151,6 +151,11 @@
 	$("#numeroTanque").val("");
 	$("#xPulpa").val("");
 	$("#xPulpaConcentrada").val("");
+	$("#mPulpa").val("");
+	$("#mPulpaConcentrada").val("");
+	$("#mAguaEvaporada").val("");
+	$("#mVaporDeAgua").val("");
+	$("#mAguaTorre").val("");
 	}
   </script>
 
@@ -169,15 +174,15 @@
   "nodeDataArray": [
 {"key":"P0", "category":"Process", "pos":"-25 120", "text":"Pulpa \n 60°C"},
 {"key":"P1", "category":"Process", "pos":"140 120", "text":"Evaporador 1er Efecto \n 0.3 bar"},
-{"key":"P5", "category":"Process", "pos":"330 50", "text":"Intercambiador"},
+{"key":"P5", "category":"Process", "pos":"330 25", "text":"Intercambiador"},
 {"key":"P2", "category":"Process", "pos":"330 280", "text":"Condensador Cascada"},
-{"key":"P7", "category":"Process", "pos":"330 360", "text":"Torre Enfriamiento Temperatura 1 \n T1 = 40 - 30°C"},
-{"key":"P6", "category":"Process", "pos":"330 200", "text":"Agua Torre"},
-{"key":"V1", "category":"Valve", "pos":"315 120", "text":""},
+{"key":"P7", "category":"Process", "pos":"675 425", "text":"\n\nTorre Enfriamiento Temperatura 1 \n T1 = 40 - 30°C\n\n"},
+{"key":"P6", "category":"Process", "pos":"750 175", "text":"\n\n\n\nAgua Torre\n\n\n\n"},
+{"key":"V1", "category":"Valve", "pos":"300 120", "text":""},
 {"key":"V6", "category":"Valve", "pos":"400 120", "text":"50°C"},
 {"key":"V2", "category":"Valve", "pos":"215 280", "text":"Vapor Vegetal \n 76°C"},
-{"key":"P4", "category":"Process", "pos":"500 120", "text":"Tanque"},
-{"key":"V5", "category":"Process", "pos":"500 260", "text":"Producto Final"}
+{"key":"P4", "category":"Process", "pos":"550 120", "text":"Tanque"},
+{"key":"V5", "category":"Process", "pos":"550 300", "text":"Producto Final"}
  ],
   "linkDataArray": [
 {"from":"P0", "to":"P1"},
