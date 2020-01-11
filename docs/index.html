@@ -172,17 +172,20 @@
     <textarea id="mySavedModel" style="width:100%;height:300px" >
 { "class": "go.GraphLinksModel",
   "nodeDataArray": [
-{"key":"P0", "category":"Process", "pos":"-25 120", "text":"Pulpa \n 60°C"},
-{"key":"P1", "category":"Process", "pos":"140 120", "text":"Evaporador 1er Efecto \n 0.3 bar"},
-{"key":"P5", "category":"Process", "pos":"330 25", "text":"Intercambiador"},
-{"key":"P2", "category":"Process", "pos":"330 280", "text":"Condensador Cascada"},
-{"key":"P7", "category":"Process", "pos":"675 425", "text":"\n\nTorre Enfriamiento Temperatura 1 \n T1 = 40 - 30°C\n\n"},
-{"key":"P6", "category":"Process", "pos":"750 175", "text":"\n\n\n\nAgua Torre\n\n\n\n"},
-{"key":"V1", "category":"Valve", "pos":"300 120", "text":""},
-{"key":"V6", "category":"Valve", "pos":"400 120", "text":"50°C"},
-{"key":"V2", "category":"Valve", "pos":"215 280", "text":"Vapor Vegetal \n 76°C"},
-{"key":"P4", "category":"Process", "pos":"550 120", "text":"Tanque"},
-{"key":"V5", "category":"Process", "pos":"550 300", "text":"Producto Final"}
+{"key":"P0", "category":"Process", "pos":"100 120", "text":"\nRefinamiento &\nEnfriamiento\n"},
+{"key":"P1", "category":"Process", "pos":"265 120", "text":"Evaporador 1er Efecto \n 0.3 bar"},
+{"key":"P5", "category":"Process", "pos":"455 25", "text":"Intercambiador"},
+{"key":"P2", "category":"Process", "pos":"455 280", "text":"Condensador Cascada"},
+{"key":"P7", "category":"Process", "pos":"800 425", "text":"\n\nTorre Enfriamiento Temperatura 1 \n T1 = 40 - 30°C\n\n"},
+{"key":"P6", "category":"Process", "pos":"875 175", "text":"\n\n\n\nAgua Torre\n\n\n\n"},
+{"key":"V1", "category":"Valve", "pos":"425 120", "text":""},
+{"key":"V6", "category":"Valve", "pos":"525 120", "text":"50°C"},
+{"key":"V2", "category":"Valve", "pos":"340 280", "text":"Vapor Vegetal \n 76°C"},
+{"key":"P4", "category":"Process", "pos":"675 120", "text":"Tanque"},
+{"key":"V5", "category":"Process", "pos":"675 300", "text":"Producto Final"},
+{"key":"P8", "category":"Process", "pos":"-40 120", "text":"Despulpado"},
+{"key":"P9", "category":"Process", "pos":"-175 120", "text":"\nLavado &\nSelección\n"},
+{"key":"P10", "category":"Process", "pos":"-300 120", "text":"Pulpa \n 60°C"}
  ],
   "linkDataArray": [
 {"from":"P0", "to":"P1"},
@@ -195,7 +198,10 @@
 {"from":"V6", "to":"P4"},
 {"from":"V1", "to":"P5"},
 {"from":"P6", "to":"P2"},
-{"from":"P4", "to":"V5"}
+{"from":"P4", "to":"V5"},
+{"from":"P8", "to":"P0"},
+{"from":"P9", "to":"P8"},
+{"from":"P10", "to":"P9"}
  ]}
     </textarea>
   </div>
@@ -216,9 +222,6 @@
             <span class="focus-border"></span>
 			<span>&#13199;</span>
         </div>
-		<div class="col-3 input-effect">
-        	<button onclick="myFunction()">Enviar Datos</button>
-        </div>
         <div class="col-3 input-effect">
         	<input class="effect-17" id="xPulpa" type="number" step='.01' placeholder="">
             <label>°Brix Pulpa</label>
@@ -229,7 +232,22 @@
             <label>°Brix Pulpa Concentrada</label>
             <span class="focus-border"></span>
         </div>
-		<div class="col-3 input-effect">
+        <div class="col-3 input-effect">
+        	<input class="effect-17" id="porcentajeRendimiento" type="number" minlength="0" maxlength="100" step='.01' placeholder="">
+            <label>% de Rendimiento</label>
+            <span class="focus-border"></span>
+            <span>&#37;</span>
+        </div>
+        <div class="col-3 input-effect">
+        	<button onclick="myFunction()">Enviar Datos</button>
+        </div>
+        <div class="col-3 input-effect">
+        	<input class="effect-17" type="number" minlength="0" maxlength="100" step='.01' placeholder="" disabled>
+        </div>
+        <div class="col-3 input-effect">
+        	<input class="effect-17" type="number" minlength="0" maxlength="100" step='.01' placeholder="" disabled>
+        </div>
+        <div class="col-3 input-effect">
         	<button onclick="myCleaningFunction()">Limpiar Datos</button>
         </div>
       </div>
