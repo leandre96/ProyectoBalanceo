@@ -150,9 +150,9 @@
 	$("#mAguaEvaporada").val(mAguaEvaporada.toFixed(3));
 	$("#mVaporDeAgua").val(mVaporDeAgua.toFixed(3));
   $("#mAguaTorre").val(mAguaTorre.toFixed(3));
-  $("#masaPulpa").val(masaPulpa);
-  $("#frutaLavada").val(frutaLavada);
-  $("#kgFruta").val(kgFruta);
+  $("#masaPulpa").val(masaPulpa.toFixed(3));
+  $("#frutaLavada").val(frutaLavada.toFixed(3));
+  $("#kgFruta").val(kgFruta.toFixed(3));
 	}
 	
 	function myCleaningFunction(){
@@ -277,47 +277,50 @@
 	<div class="container">
       <div class="row bg_3">
 	  <h3 align="center"><i>Resultados</i></h3>
-	  <hr>
+    <hr>
+    <div class="col-3 input-effect">
+      <label>Kg de Fruta</label>
+          <input class="effect-19" id="kgFruta" type="number" step='.01' placeholder="" disabled>
+            <span>&#13199;</span>
+        </div>
+        <div class="col-3 input-effect">
+          <label>Masa Pulpa</label>
+              <input class="effect-19" id="masaPulpa" type="number" step='.01' placeholder="" disabled>
+                <span>&#13199;</span>
+            </div>
+            <div class="col-3 input-effect">
+              <label>Masa Vapor De Agua</label>
+                    <input class="effect-21" id="mVaporDeAgua" type="number" step='.01' placeholder="" disabled>
+                      <span>&#13199;</span>
+                  </div>
+                  <div class="col-3 input-effect">
+                    <label>Fruta Lavada</label>
+                        <input class="effect-19" id="frutaLavada" type="number" step='.01' placeholder="" disabled>
+                          <span>&#13199;</span>
+                      </div>
+                      <div class="col-3 input-effect">
+                        <label>Masa Pulpa Concentrada</label>
+                            <input class="effect-19" id="mPulpaConcentrada" type="number" step='.01' placeholder="" disabled>
+                        <span>&#13199;</span>
+                          </div>
+                          <div class="col-3 input-effect">
+                            <label>Masa Agua Torre</label>
+                                  <input class="effect-19" id="mAguaTorre" type="number" step='.01' placeholder="" disabled>           
+                                    <span>&#13221;</span>
+                                </div>
 	  <div class="col-3 input-effect">
 			<label>Pulpa Refinada</label>
         	<input class="effect-19" id="pulpaRefinada" type="number" step='.01' placeholder="" disabled>
             <span>&#13199;</span>
         </div>
-        <div class="col-3 input-effect">
-			<label>Masa Pulpa Concentrada</label>
-        	<input class="effect-19" id="mPulpaConcentrada" type="number" step='.01' placeholder="" disabled>
-			<span>&#13199;</span>
-        </div>
+
         <div class="col-3 input-effect">
 		<label>Masa Agua Evaporada</label>
         	<input class="effect-20" id="mAguaEvaporada" type="number" step='.01' placeholder="" disabled>
             <span>&#13199;</span>
         </div>
-        <div class="col-3 input-effect">
-		<label>Masa Vapor De Agua</label>
-        	<input class="effect-21" id="mVaporDeAgua" type="number" step='.01' placeholder="" disabled>
-            <span>&#13199;</span>
-        </div>
-		<div class="col-3 input-effect">
-		<label>Masa Agua Torre</label>
-        	<input class="effect-19" id="mAguaTorre" type="number" step='.01' placeholder="" disabled>           
-            <span>&#13221;</span>
-        </div>
-    <div class="col-3 input-effect">
-          <label>Kg de Fruta</label>
-              <input class="effect-19" id="kgFruta" type="number" step='.01' placeholder="" disabled>
-                <span>&#13199;</span>
-            </div>
-    <div class="col-3 input-effect">
-              <label>Fruta Lavada</label>
-                  <input class="effect-19" id="frutaLavada" type="number" step='.01' placeholder="" disabled>
-                    <span>&#13199;</span>
-                </div>
-    <div class="col-3 input-effect">
-                  <label>Masa Pulpa</label>
-                      <input class="effect-19" id="masaPulpa" type="number" step='.01' placeholder="" disabled>
-                        <span>&#13199;</span>
-                    </div>
+        
+
 	  </div>
     </div>
 </div>
