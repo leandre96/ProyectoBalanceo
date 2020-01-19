@@ -142,9 +142,9 @@
   var porcentajeRendimientoRefinamientoEnfriamiento = new Number($("#porcentajeRendimientoRefinamientoEnfriamiento").val());
   var porcentajeRendimientoDespulpado = new Number($("#porcentajeRendimientoDespulpado").val());
   var porcentajeRendimientoLavadoSeleccion = new Number($("#porcentajeRendimientoLavadoSeleccion").val());
-  var masaPulpa = pulpaRefinada/porcentajeRendimientoRefinamientoEnfriamiento;
-  var frutaLavada = masaPulpa/porcentajeRendimientoDespulpado;
-  var kgFruta = frutaLavada/porcentajeRendimientoLavadoSeleccion;
+  var masaPulpa = (pulpaRefinada*100)/porcentajeRendimientoRefinamientoEnfriamiento;
+  var frutaLavada = (masaPulpa*100)/porcentajeRendimientoDespulpado;
+  var kgFruta = (frutaLavada*100)/porcentajeRendimientoLavadoSeleccion;
 	$("#pulpaRefinada").val(pulpaRefinada.toFixed(2));
 	$("#mPulpaConcentrada").val(mPulpaConcentrada.toFixed(3));
 	$("#mAguaEvaporada").val(mAguaEvaporada.toFixed(3));
